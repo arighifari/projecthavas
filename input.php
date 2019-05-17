@@ -17,7 +17,7 @@
             <h2>Import Database</h2>
             </div>
         </div>
-        <div class="FormBuku" >
+        <div class="" >
             <form action="inputdb.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Import Database</label>
