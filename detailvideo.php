@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 
     <!-- Font Awesome JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -20,7 +20,7 @@
 
     <?php
         include('sql.php');
-        include_once('navbar.php');
+        include('navbar.php');
         $idvideo = $_GET['idvideo'];
         include_once('config.php');
         $result=mysqli_query($conn,"SELECT * FROM videos where video_id = '$idvideo'");
@@ -32,39 +32,26 @@
         $year = mysqli_query($conn,"SELECT SUBSTRING(LaunchDate,-4) AS LaunchDate FROM videos where video_id = '$idvideo'");
         $years = mysqli_fetch_array($year);
 
-        
-    
-        // if($media2 == 'TV'){
-        //     echo "adpix2\2019\1901\general\movie";
-        // }
-        // else{
-        //     echo "adpix2\2019\1901\general\image";
-        // }
+        $week = mysqli_query($conn,"SELECT SUBSTRING(FileExcel,10,4) AS FileExcel FROM videos where video_id = '$idvideo'");
+        $weeks = mysqli_fetch_assoc($week);
+
+        $sec = mysqli_query($conn,"SELECT Section FROM videos where video_id = '$idvideo'");
+        $secs = mysqli_fetch_assoc($sec);
+
+        $sections = new section();
 
     ?>
 </head>
 
 <body>
     <div class="container-fluid">
-    <video id="player" class="video-js vjs-default-skin vjs-big-play-centered" data-setup='{ "controls": true, "autoplay": false, "preload": "auto", "width": "768", "height": "432" }'>
-            <source id="videoSource" src="<?php
-            if($media2['Media'] == 'TV'){
-                echo "adpix2/".$years['LaunchDate']."/1901/general/movie/A_FOOD/446589  -  SEDAAP_CUP-INSTANT_NOODLE  -  RS_SOTO-5RS-ORG2-BASKET_(05-S)";
-            }
-            else{
-                echo "adpix2/".$years['LaunchDate']."/1901/general/movie/A_FOOD/1.mpg";
-                // echo "adpix2/2019/1901/general/image";
-            }
-            ?>" type="video/mp4" codecs='"a_ac3, avc"'></source>
-    </video>
     <video width="400" controls>
         <source src="<?php  
         if($media2['Media'] == 'TV'){
-            echo "adpix2/".$years['LaunchDate']."/1901/general/movie/A_FOOD/446589  -  SEDAAP_CUP-INSTANT_NOODLE  -  RS_SOTO-5RS-ORG2-BASKET_(05-S)";
+            echo "adpix2/".$years['LaunchDate']."/".$weeks['FileExcel']."/general/movie/A_FOOD/446589  -  SEDAAP_CUP-INSTANT_NOODLE  -  RS_SOTO-5RS-ORG2-BASKET_(05-S)";
         }
-        else{
-            echo "adpix2/".$years['LaunchDate']."/1901/general/movie/A_FOOD/1.mpg";
-            // echo "adpix2/2019/1901/general/image";
+        else {
+            echo "adpix2/".$years['LaunchDate']."/".$weeks['FileExcel']."/general/image/A_FOOD/1.mpg";
         }
         ?>" type="H264/mp4">
     </video>
@@ -141,13 +128,6 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
 </body>
 
 </html>

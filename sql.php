@@ -1,102 +1,111 @@
 <?php
 
 
-function section(){
-    include_once('config.php');
+class section{
+function __construct(){
+    $section;
+    include('config.php');
     $query = "SELECT DISTINCT Section FROM videos ORDER BY Section";
     $category = mysqli_query($conn, $query);
 
-    while($categories = mysqli_fetch_assoc($category)){
-        if($categories['Section'] == 'A FOOD')
+    while($section = mysqli_fetch_assoc($category)){
+        if($section['Section'] == 'A FOOD')
         {
             echo "A_FOOD";
             echo "<br>";
         }
-        else if($categories['Section'] == 'B BEVERAGES'){
+        else if($section['Section'] == 'B BEVERAGES'){
             echo "B_BEVERAGES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'C SMOKING & ACCESSORIES'){
+        else if($section['Section'] == 'C SMOKING & ACCESSORIES'){
             echo "C_SMOKING-ACCESSORIES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'D BABY & MATERNITY PRODUCTS'){
+        else if($section['Section'] == 'D BABY & MATERNITY PRODUCTS'){
             echo "D_BABY-MATERNITY_PRODUCTS";
             echo "<br>";
         }
-        else if($categories['Section'] == 'E MEDICINES/PHARMACEUTICALS'){
+        else if($section['Section'] == 'E MEDICINES/PHARMACEUTICALS'){
             echo "E_MEDICINES-PHARMACEUTICALS";
             echo "<br>";
         }
-        else if($categories['Section'] == 'F TOILETRIES & COSMETICS'){
+        else if($section['Section'] == 'F TOILETRIES & COSMETICS'){
             echo "F_TOILETRIES-COSMETICS";
             echo "<br>";
         }
-        else if($categories['Section'] == 'G APPAREL/PERSONAL ACCESSORIES'){
+        else if($section['Section'] == 'G APPAREL/PERSONAL ACCESSORIES'){
             echo "G_APPAREL-PERSONAL_ACCESSORIES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'H HOUSEHOLD PRODUCTS/SUPPLIES'){
+        else if($section['Section'] == 'H HOUSEHOLD PRODUCTS/SUPPLIES'){
             echo "H_HOUSEHOLD_PRODUCTS-SUPPLIES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'J HOUSEHOLD EQUIPMENT & APPLIANCES'){
+        else if($section['Section'] == 'J HOUSEHOLD EQUIPMENT & APPLIANCES'){
             echo "J_HOUSEHOLD_EQUIPMENT-APPLIANCES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'K_AUTOMOTIVE-ACCESSORIES'){
+        else if($section['Section'] == 'K AUTOMOTIVE & ACCESSORIES'){
             echo "K_AUTOMOTIVE-ACCESSORIES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'L INDUSTRIAL PRODUCTS'){
+        else if($section['Section'] == 'L INDUSTRIAL PRODUCTS'){
             echo "L_INDUSTRIAL_PRODUCTS";
             echo "<br>";
         }
-        else if($categories['Section'] == 'M OFFICE EQPT, COMPUTER, COMMUNICATIONS'){
+        else if($section['Section'] == 'M OFFICE EQPT, COMPUTER, COMMUNICATIONS'){
             echo "M_OFFICE_EQPT,COMPUTER,COMMUNICATIONS";
             echo "<br>";
         }
-        else if($categories['Section'] == 'N SERVICES - FINANCIAL'){
+        else if($section['Section'] == 'N SERVICES - FINANCIAL'){
             echo "N_SERVICES-FINANCIAL";
             echo "<br>";
         }
-        else if($categories['Section'] == 'P SERVICES - TRANST, TRAVEL, RECREATION'){
+        else if($section['Section'] == 'P SERVICES - TRANST, TRAVEL, RECREATION'){
             echo "P_SERVICES-TRANST,TRAVEL,RECREATION";
             echo "<br>";
         }
-        else if($categories['Section'] == 'Q SERVICES - PROPERTY'){
+        else if($section['Section'] == 'Q SERVICES - PROPERTY'){
             echo "Q_SERVICES-PROPERTY";
             echo "<br>";
         }
-        else if($categories['Section'] == 'R SERVICES - PERSONAL SERVICES'){
+        else if($section['Section'] == 'R SERVICES - PERSONAL SERVICES'){
             echo "R_SERVICES-PERSONAL_SERVICES";
             echo "<br>";
         }
-        else if($categories['Section'] == 'S SERVICES - MEDIA & PROMOTION'){
+        else if($section['Section'] == 'S SERVICES - MEDIA & PROMOTION'){
             echo "S_SERVICES-MEDIA-PROMOTION";
             echo "<br>";
         }
-        else if($categories['Section'] == 'T SERVICES - EDUCATION'){
+        else if($section['Section'] == 'T SERVICES - EDUCATION'){
             echo "T_SERVICES-EDUCATION";
             echo "<br>";
         }
-        else if($categories['Section'] == 'U SERVICES - RETAIL'){
+        else if($section['Section'] == 'U SERVICES - RETAIL'){
             echo "U_SERVICES-RETAIL";
             echo "<br>";
         }
-        else if($categories['Section'] == 'V SERVICES - CORPORATE & PUBLIC SERV ADV'){
+        else if($section['Section'] == 'V SERVICES - CORPORATE & PUBLIC SERV ADV'){
             echo "V_SERVICES-CORPORATE-PUBLIC_SERV_ADV";
             echo "<br>";
         }
-        else if($categories['Section'] == 'W NON-COMMERCIAL ADVERTISEMENT'){
+        else if($section['Section'] == 'W NON-COMMERCIAL ADVERTISEMENT'){
             echo "W_NON-COMMERCIAL_ADVERTISEMENT";
             echo "<br>";
         }
     }
 }
 
+function getData($section){
+    return $section;
+}
+
+}
+
+
 function B(){
-    include_once('config.php');
+    include('config.php');
     $query = "SELECT DISTINCT Section FROM videos ORDER BY Section";
     $category = mysqli_query($conn, $query);
     
