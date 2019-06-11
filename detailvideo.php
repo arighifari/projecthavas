@@ -19,7 +19,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
     <?php
-        include('sql.php');
+        include('section.php');
         include('navbar.php');
         $idvideo = $_GET['idvideo'];
         include_once('config.php');
@@ -38,31 +38,61 @@
         $sec = mysqli_query($conn,"SELECT Section FROM videos where video_id = '$idvideo'");
         $secs = mysqli_fetch_assoc($sec);
 
-        $sections = new section();
+        $lib = mysqli_query($conn,"SELECT libsignature FROM videos where video_id = '$idvideo'");
+        $libs = mysqli_fetch_assoc($lib);
+        
+        $brand = mysqli_query($conn,"SELECT Brand FROM videos where video_id = '$idvideo'");
+        $brands = mysqli_fetch_assoc($brand);
 
+        $copyline = mysqli_query($conn,"SELECT Copyline FROM videos where video_id = '$idvideo'");
+        $copylines = mysqli_fetch_assoc($copyline);
+
+        $brand_rep = str_replace(" - ","-",$brands['Brand']);
+        $brand_rep1 = str_replace(", ",",",$brand_rep);
+        $brand_rep2 = str_replace("'","",$brand_rep1);
+        $brand_rep3 = str_replace("/","-",$brand_rep2);
+        $brand_rep4 = str_replace(" & ","-",$brand_rep3);
+        $brand_rep5 = str_replace(" / ","-",$brand_rep4);
+        $brand_replace = str_replace(" ","_",$brand_rep5);
+
+        $copy = str_replace(" / ","-",$copylines['Copyline']);
+        $copy_rep = str_replace(" - ","-",$copy);
+        $copy_rep1 = str_replace(", ",",",$copy_rep);
+        $copy_rep2 = str_replace("'","",$copy_rep1);
+        $copy_rep3 = str_replace(" & ","-",$copy_rep2);
+        $copy_rep4 = str_replace("&","-",$copy_rep3);
+        $copy_rep5 = str_replace(" ","_",$copy_rep4);
+        $copy_replace = str_replace("/","-",$copy_rep5);
     ?>
 </head>
 
 <body>
-    <div class="container-fluid">
-    <video width="400" controls>
-        <source src="<?php  
-        if($media2['Media'] == 'TV'){
-            echo "adpix2/".$years['LaunchDate']."/".$weeks['FileExcel']."/general/movie/A_FOOD/446589  -  SEDAAP_CUP-INSTANT_NOODLE  -  RS_SOTO-5RS-ORG2-BASKET_(05-S)";
-        }
-        else {
-            echo "adpix2/".$years['LaunchDate']."/".$weeks['FileExcel']."/general/image/A_FOOD/1.mpg";
-        }
-        ?>" type="H264/mp4">
-    </video>
-    </div>
+    <?php if($media2['Media'] == 'TV'){
+    echo "<center><h2>Detail Video</h2></center>";
+    }else{
+    echo "<center><h2>Detail Image</h2></center>";
+    }?>
     <div class="container-fluid">
         <div class="row">
-            <div >
-                <h2>Detail Video</h2>
-            </div>
+        <div class="col-md-5">
+        <?php 
+        if($media2['Media'] == 'TV') { ?>
+        <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120></EMBED>
+        <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg"
+        href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" class="btn btn-primary btn-sm" role="button">Download</a>
+        <?php } else { ?>
+            <img style="width: 100% ;height: auto ;margin-top: 30px" src="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            alt="<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg">
+            <a style="margin-top:5px" href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+                target="_blank" class="btn btn-primary btn-sm" role="button">VIEW</a>
+            <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            target="_blank" class="btn btn-primary btn-sm" role="button">DOWNLOAD</a>        
+        <?php }
+        ?>
         </div>
-        <table id="myTable" class="table table-{1:striped|lg|bordered|hover|inverse} table-inverse table-responsive" >
+    <div class="col-md-7">
+        <table id="myTable" style="margin-top: 30px" class="table table-{1:striped|lg|bordered|hover|inverse} table-inverse table-responsive" >
         <tr>
             <td><label for="iduser">Id</label></td>
             <td>:</td>
@@ -71,7 +101,7 @@
         <tr>
             <td><label for="">Signature</label></td>
             <td>:</td>
-            <td> <label for=""><?php echo $videos['Signatured'] ?></label></td>
+            <td> <label for=""><?php echo $videos['Signature'] ?></label></td>
         </tr>
         <tr>
             <td><label for="">Section</label></td>
@@ -119,6 +149,8 @@
             <td><label for=""><?php echo $videos['advertiser'] ?></label></td>
         </tr>
     </table>
+    </div>
+</div>
 </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->

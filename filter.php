@@ -153,7 +153,7 @@
             // var data = table.row( this ).data();
             var id = this.cells[0].innerHTML;
             var brand = this.cells[5].innerHTML;
-            alert( 'You clicked on id '+id+" and Brand = "+brand);
+            alert( 'You clicked on id '+id+" on Brand = "+brand);
             window.location.href="detailvideo.php?idvideo="+id;
         } );
     } );

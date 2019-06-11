@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Video Havas</title>
+    <link rel="icon" type="image/jpg" href="image/havas.png">
+
+    <title>Havas</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -29,11 +31,12 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Video</h3>
+            <!-- <img src="image/havas.png" style="width: 40%; length:40% " alt="Logo Havas"> -->
+                <h3><img src="image/havas.png" style="width: 17%; length:17% " alt="Logo Havas">HAVAS</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Home</p>
+                <span><p>HOME</p></span>
                 <li>
                     <a href="index.php">
                     <span style="font-size: 20px; color: #cfcfd1;">
@@ -45,10 +48,21 @@
 
                 </li>
                 <li>
-                    <a href="input.php">Upload Excel</a>
+                    <a href="input.php">
+                        <span style="font-size: 20px; color: #cfcfd1;">
+                            <i class="fas fa-upload"></i>
+                            </span>
+                                Upload Excel
+                            </i>
+                    </a>
                 </li>
                 <li>
-                    <a href="filter.php">Filter Video</a>
+                    <a href="index.php">
+                        <span style="font-size: 20px; color: #cfcfd1;">
+                            <i class="fas fa-filter"></i>
+                        </span>
+                            Filter
+                    </a>
                 </li>
         </nav>
 
@@ -67,11 +81,11 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <i class="far fa-user"> <span><a href="#">Login</a></span></i>
                             </li>
                             <li>
-                            </li>  
+                            </li>   -->
                         </ul>
                     </div>
                 </div>

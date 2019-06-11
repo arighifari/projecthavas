@@ -4,15 +4,17 @@ include_once('excel_reader/excel_reader2.php');
 
 if(isset($_POST['submit'])){
 
-$target = basename($_FILES['db']['name']) ;
-move_uploaded_file($_FILES['db']['tmp_name'], $target);
-$filexls = $_FILES['db']['name'];
+    $filexls = $_FILES['db']['name'];
+    
+    $target = basename($_FILES['db']['name']) ;
+    //upload to specific folder
+    move_uploaded_file($_FILES['db']['tmp_name'],"excel/" . $target);
  
 // beri permisi agar file xls dapat di baca
-chmod($_FILES['db']['name'],0777);
+chmod("excel/".$_FILES['db']['name'],0777);
  
 // mengambil isi file xls
-$data = new Spreadsheet_Excel_Reader($_FILES['db']['name'],false);
+$data = new Spreadsheet_Excel_Reader("excel/" . $_FILES['db']['name'],false);
 // menghitung jumlah baris data yang ada
 $jumlah_baris = $data->rowcount($sheet_index=0);
  
@@ -35,12 +37,19 @@ for ($i=2; $i<=$jumlah_baris; $i++){
     $filename          = $data->val($i, 12);
     $copylinedate      = $data->val($i, 13);
     $advertiser        = $data->val($i, 14);
-    $fullfilename      = $data->val($i, 15);
 
-    $query = "INSERT into videos (Signatured,Section,Category,Media,MediaAbbrName,Brand,Copyline,LaunchDate,Duration,
-    creativeduration,libsignature,Filenames,CopylineDate,advertiser,FullFilename,FileExcel)
+    $section           = mysqli_real_escape_string($conn,$section);
+    $category          = mysqli_real_escape_string($conn,$category);
+    $mediaabbrname     = mysqli_real_escape_string($conn,$mediaabbrname);
+    $brand             = mysqli_real_escape_string($conn,$brand);
+    $copyline          = mysqli_real_escape_string($conn,$copyline);
+    $advertiser        = mysqli_real_escape_string($conn,$advertiser);
+
+
+    $query = "INSERT into videos (Signature,Section,Category,Media,MediaAbbrName,Brand,Copyline,LaunchDate,Duration,
+    creativeduration,libsignature,Filenames,CopylineDate,advertiser,FileExcel)
     values('$signature','$section','$category','$media','$mediaabbrname','$brand','$copyline','$launchdate','$duration','$creativeduration',
-    '$libsignature','$filename','$copylinedate','$advertiser','$fullfilename','$filexls')";
+    '$libsignature','$filename','$copylinedate','$advertiser','$filexls')";
     $hasil = mysqli_query($conn,$query);
     $berhasil++;
 }
@@ -49,15 +58,14 @@ for ($i=2; $i<=$jumlah_baris; $i++){
                 die(mysqli_error($conn));
             }else{
         //          jika impor berhasil
-
-        echo "<script>alert('Berhasil Menginput Data');</script>";
             }
  
 // hapus kembali file .xls yang di upload tadi
-unlink($_FILES['db']['name']);
+// unlink($_FILES['db']['name']);
  
 // alihkan halaman ke index.php
-header("location:index.php?berhasil=$berhasil");
+echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert Into Database');</script>";
+// header("location:index.php?berhasil=$berhasil");
 
 }
 
