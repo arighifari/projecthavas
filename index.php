@@ -9,7 +9,7 @@
     $result = mysqli_query($conn,"SELECT * FROM videos");
     $results = mysqli_fetch_assoc($result);
         
-    $year = mysqli_query($conn,"SELECT DISTINCT SUBSTRING(LaunchDate,-4) AS LaunchDate FROM videos");
+    $year = mysqli_query($conn,"SELECT DISTINCT Year FROM videos ORDER BY Year");
     $section = mysqli_query($conn, "SELECT DISTINCT Section FROM videos ORDER BY Section");
     $brand = mysqli_query($conn, "SELECT DISTINCT Brand FROM videos ORDER BY Brand");
     $libsignature = mysqli_query($conn, "SELECT DISTINCT libsignature FROM videos ORDER BY libsignature");
@@ -38,7 +38,7 @@
                             <option  value=''>Year</option>
                         <?php
                             while($years = mysqli_fetch_assoc($year)){ ?>
-                            <option class='common-selector Year' value='<?= $years['LaunchDate']?>'><?= $years['LaunchDate']?></option>;                            
+                            <option class='common-selector Year' value='<?= $years['Year']?>'><?= $years['Year']?></option>                         
                                 <?php }?>
                         </select>
                         </td>
@@ -48,7 +48,7 @@
                             <option  value=''>Section</option>
                         <?php
                             while($sections = mysqli_fetch_assoc($section)){ ?>
-                            <option class='common-selector Year' value='<?= $sections['Section']?>'><?= $sections['Section']?></option>;                            
+                            <option class='common-selector Year' value='<?= $sections['Section']?>'><?= $sections['Section']?></option>                         
                                 <?php }?>
                         </select>
                         </td>
@@ -58,7 +58,7 @@
                             <option  value=''>Brand</option>
                         <?php
                             while($brands = mysqli_fetch_assoc($brand)){ ?>
-                            <option class='common-selector Year' value='<?= $brands['Brand']?>'><?= $brands['Brand']?></option>;                            
+                            <option class='common-selector Year' value='<?= $brands['Brand']?>'><?= $brands['Brand']?></option>                        
                                 <?php }?>
                         </select>
                         </td>
@@ -69,17 +69,17 @@
             <table id='empTable' class='display dataTable'>
                 <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Signature</th>
                     <th>Section</th>
                     <th>Category</th>
-                    <th>Media</th>
                     <th>Brand</th>
                     <th>Copyline</th>
+                    <th>advertiser</th>
+                    <th>Media</th>
                     <th>LaunchDate</th>
                     <th>Duration</th>
                     <th>libsignature</th>
-                    <th>advertiser</th>
+                    <th>Signature</th>
+                    <th>ID</th>
                     </tr>
                 </thead>
             </table>
@@ -106,17 +106,17 @@
                     }
                 },
                 'columns': [
-                    { data: 'video_Id' },
-                    { data: 'Signature' },
                     { data: 'Section' },
                     { data: 'Category' },
-                    { data: 'Media' },
                     { data: 'Brand' },
                     { data: 'Copyline' },
+                    { data: 'advertiser' },
+                    { data: 'Media' },
                     { data: 'LaunchDate' },
                     { data: 'Duration' },
                     { data: 'libsignature' },
-                    { data: 'advertiser' }
+                    { data: 'Signature' },
+                    { data: 'video_Id' }
                 ]
             });
 
@@ -135,12 +135,34 @@
         var table = $('#empTable').DataTable();
         
         $('#empTable tbody').on('click', 'tr', function () {
-            var id = this.cells[0].innerHTML;
-            var brand = this.cells[5].innerHTML;
-            alert( 'You clicked on id '+id+" on Brand = "+brand);
-            window.location.href="detailvideo.php?idvideo="+id;
+            var id = this.cells[9].innerHTML;
+            var brand = this.cells[2].innerHTML;
+            var konfirmasi = confirm( 'Are You Sure To Open The Detail Of '+brand+" ?");
+            if(konfirmasi === true){
+                window.location.href="detailvideo.php?idvideo="+id;
+            }
+            else if (confirm === false){
+                window.location.href="index.php";
+            }
+
         } );
     } );
+
+    $(document).ready(function(){
+        $('#section').click(function(){
+            var year_filter = $('#year').val();
+            var section_filter = $('#section').val();
+            $.ajax({
+                type: 'POST',
+                url: 'brand.php?section_filter='+section_filter+'&year_filter='+year_filter,
+                data: 'section_filter='+section_filter,
+                success: function(response){
+                    $('#brand').html(response);
+                }
+            })
+        })
+    });
+    
     </script>
     </body>
 

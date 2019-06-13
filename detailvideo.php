@@ -29,7 +29,7 @@
         $media = mysqli_query($conn,"SELECT Media FROM videos where video_id = '$idvideo'");
         $media2 = mysqli_fetch_assoc($media);
 
-        $year = mysqli_query($conn,"SELECT SUBSTRING(LaunchDate,-4) AS LaunchDate FROM videos where video_id = '$idvideo'");
+        $year = mysqli_query($conn,"SELECT Year FROM videos where video_id = '$idvideo'");
         $years = mysqli_fetch_array($year);
 
         $week = mysqli_query($conn,"SELECT SUBSTRING(FileExcel,10,4) AS FileExcel FROM videos where video_id = '$idvideo'");
@@ -77,16 +77,16 @@
         <div class="col-md-5">
         <?php 
         if($media2['Media'] == 'TV') { ?>
-        <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120></EMBED>
+        <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120></EMBED>
         <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg"
-        href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" class="btn btn-primary btn-sm" role="button">Download</a>
+        href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" class="btn btn-primary btn-sm" role="button">Download</a>
         <?php } else { ?>
-            <img style="width: 100% ;height: auto ;margin-top: 30px" src="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            <img style="width: 100% ;height: auto ;margin-top: 30px" src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
             alt="<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg">
-            <a style="margin-top:5px" href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            <a style="margin-top:5px" href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
                 target="_blank" class="btn btn-primary btn-sm" role="button">VIEW</a>
             <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
-            href="adpix2/<?= $years['LaunchDate']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
             target="_blank" class="btn btn-primary btn-sm" role="button">DOWNLOAD</a>        
         <?php }
         ?>

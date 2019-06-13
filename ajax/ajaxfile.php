@@ -20,7 +20,7 @@ $searchBybrand = mysqli_real_escape_string($conn, $_POST['brand']);
 ## Search 
 $searchQuery = " ";
 if($searchByyear != ''){
-    $searchQuery .= " and (LaunchDate like '%".$searchByyear."%' ) ";
+    $searchQuery .= " and (Year like '%".$searchByyear."%' ) ";
 }
 if($searchBysection != ''){
     $searchQuery .= " and (Section like '".$searchBysection."%') ";

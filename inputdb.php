@@ -5,6 +5,9 @@ include_once('excel_reader/excel_reader2.php');
 if(isset($_POST['submit'])){
 
     $filexls = $_FILES['db']['name'];
+
+    $tahun = substr($filexls,9,2);
+    $tahun2 = "20$tahun" ;
     
     $target = basename($_FILES['db']['name']) ;
     //upload to specific folder
@@ -47,16 +50,18 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 
 
     $query = "INSERT into videos (Signature,Section,Category,Media,MediaAbbrName,Brand,Copyline,LaunchDate,Duration,
-    creativeduration,libsignature,Filenames,CopylineDate,advertiser,FileExcel)
+    creativeduration,libsignature,Filenames,CopylineDate,advertiser,FileExcel,Year)
     values('$signature','$section','$category','$media','$mediaabbrname','$brand','$copyline','$launchdate','$duration','$creativeduration',
-    '$libsignature','$filename','$copylinedate','$advertiser','$filexls')";
+    '$libsignature','$filename','$copylinedate','$advertiser','$filexls','$tahun2')";
     $hasil = mysqli_query($conn,$query);
     $berhasil++;
 }
     if(!$hasil){
         //          jika import gagal
+            echo "<script type='text/javascript'>window.location='index.php';alert('Failed Insert Data Into Database');</script>";
                 die(mysqli_error($conn));
             }else{
+            echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert $berhasil Data Into Database');</script>";
         //          jika impor berhasil
             }
  
@@ -64,9 +69,8 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 // unlink($_FILES['db']['name']);
  
 // alihkan halaman ke index.php
-echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert Into Database');</script>";
+echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert $berhasil Data Into Database');</script>";
 // header("location:index.php?berhasil=$berhasil");
-
 }
 
 ?>
