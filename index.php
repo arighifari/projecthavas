@@ -17,16 +17,28 @@
     <!-- Datatable CSS -->
     <link href='DataTables/datatables.min.css' rel='stylesheet' type='text/css'>
 
+    <!-- <link href='https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'> -->
+
     <!-- jQuery Library -->
     <script src="jquery/jquery-3.3.1.min.js"></script>
     
     <!-- Datatable JS -->
     <script src="DataTables/datatables.min.js"></script>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script> -->
 
     </head>
-    <body >
+    <body>
 
-        <div >    
+        <div>    
             <!-- Custom Filter -->
             <h2 style="margin-left: 10px">FILTER DATA</h2>
             <form action="" method="post">
@@ -66,6 +78,7 @@
             </table>
             </form>
             <br>
+
             <table id='empTable' class='display dataTable'>
                 <thead>
                     <tr>
@@ -82,8 +95,9 @@
                     <th>ID</th>
                     </tr>
                 </thead>
-            </table>
+            </table>    
         </div>
+
         <script type="text/javascript">
         $(document).ready(function(){
             var dataTable = $('#empTable').DataTable({
@@ -120,6 +134,8 @@
                 ]
             });
 
+
+
             $('#year').change(function(){
                 dataTable.draw();
             });
@@ -134,8 +150,8 @@
         $(document).ready(function() {
         var table = $('#empTable').DataTable();
         
-        $('#empTable tbody').on('click', 'tr', function () {
-            var id = this.cells[9].innerHTML;
+        $('#empTable tbody').on('click','tr',function () {
+            var id = this.cells[10].innerHTML;
             var brand = this.cells[2].innerHTML;
             var konfirmasi = confirm( 'Are You Sure To Open The Detail Of '+brand+" ?");
             if(konfirmasi === true){
@@ -162,7 +178,6 @@
             })
         })
     });
-    
     </script>
     </body>
 

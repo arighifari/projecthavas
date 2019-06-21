@@ -1,7 +1,7 @@
 <?php
 
 $dbhost = 'localhost:3306';
-$dbname = 'video';
+$dbname = 'Havas';
 $dbuser = 'root';
 $dbpass = 'arighifari23';
 

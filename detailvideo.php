@@ -75,7 +75,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-md-5">
-        <?php 
+        <?php  
         if($media2['Media'] == 'TV') { ?>
         <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120></EMBED>
         <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg"

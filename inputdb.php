@@ -59,6 +59,8 @@ for ($i=2; $i<=$jumlah_baris; $i++){
     if(!$hasil){
         //          jika import gagal
             echo "<script type='text/javascript'>window.location='index.php';alert('Failed Insert Data Into Database');</script>";
+            unlink("excel/".$_FILES['db']['name']);
+
                 die(mysqli_error($conn));
             }else{
             echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert $berhasil Data Into Database');</script>";
