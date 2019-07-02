@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" type="image/jpg" href="image/havas.png">
+    <link rel="icon" type="image/jpg" href="image/arena.png">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -29,11 +29,13 @@
         <nav id="sidebar">
             <div class="sidebar-header">
             <!-- <img src="image/havas.png" style="width: 40%; length:40% " alt="Logo Havas"> -->
-                <h3><img src="image/havas.png" style="width: 17%; length:17% " alt="Logo Havas">HAVAS</h3>
+                <img src="image/arena.png" style="width: 17%; length:17%; margin-left: 80px; margin-bottom: 10px"  alt="Logo Havas">
+                <h3 style="margin-left: 30px">AdWatch</h3>
             </div>
-
             <ul class="list-unstyled components">
-                <span><p>HOME</p></span>
+                <span><a href="landing_page.php" style="margin-left: 10px">Landing Page</a></span>
+                <br>
+                <br>
                 <li>
                     <a href="index.php">
                     <span style="font-size: 20px; color: #cfcfd1;">

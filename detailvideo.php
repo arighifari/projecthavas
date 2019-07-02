@@ -94,59 +94,59 @@
     <div class="col-md-7">
         <table id="myTable" style="margin-top: 30px" class="table table-{1:striped|lg|bordered|hover|inverse} table-inverse table-responsive" >
         <tr>
-            <td><label for="iduser">Id</label></td>
+            <td><label for="iduser"><strong>Id</strong></label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['video_Id'] ?> </label></td>
+            <td><label for=""><strong><?php echo $videos['video_Id'] ?></strong>  </label></td>
         </tr>
         <tr>
-            <td><label for="">Signature</label></td>
+            <td><label for=""><strong>Signature</strong></label></td>
             <td>:</td>
-            <td> <label for=""><?php echo $videos['Signature'] ?></label></td>
+            <td> <label for=""> <strong><?php echo $videos['Signature'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Section</label></td>
+            <td><label for=""> <strong>Section</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['Section'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['Section'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Category</label></td>
+            <td><label for=""><strong>Category</strong></label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['Category'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['Category'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Media</label></td>
+            <td><label for=""> <strong>Media</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $media2['Media'] ?></label></td>
+            <td><label for=""> <strong><?php echo $media2['Media'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Copyline</label></td>
+            <td><label for=""> <strong>Copyline</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['Copyline'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['Copyline'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Brand</label></td>
+            <td><label for=""> <strong>Brand</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['Brand'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['Brand'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">LaunchDate</label></td>
+            <td><label for=""> <strong>LaunchDate</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['LaunchDate'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['LaunchDate'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">Duration</label></td>
+            <td><label for=""> <strong>Duration</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['Duration'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['Duration'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">libsignature</label></td>
+            <td><label for=""> <strong>libsignature</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['libsignature'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['libsignature'] ?></strong> </label></td>
         </tr>
         <tr>
-            <td><label for="">advertiser</label></td>
+            <td><label for=""> <strong>advertiser</strong> </label></td>
             <td>:</td>
-            <td><label for=""><?php echo $videos['advertiser'] ?></label></td>
+            <td><label for=""> <strong><?php echo $videos['advertiser'] ?></strong> </label></td>
         </tr>
     </table>
     </div>

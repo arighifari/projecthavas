@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-    <title>HAVAS</title>
+    <title>AdWatch</title>
     <?php 
     include('navbar.php');
     include('config.php');
