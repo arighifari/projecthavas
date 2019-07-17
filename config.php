@@ -1,9 +1,9 @@
 <?php
 
 $dbhost = 'localhost';
-$dbname = 'video';
+$dbname = 'havas';
 $dbuser = 'root';
-$dbpass =  '';
+$dbpass =  'arighifari23';
 
 $conn = mysqli_connect ($dbhost,$dbuser,$dbpass,$dbname);
 

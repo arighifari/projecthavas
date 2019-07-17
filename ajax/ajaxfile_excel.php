@@ -14,28 +14,16 @@ $searchValue = mysqli_real_escape_string($conn, $_POST['search']['value']); // S
 
 ## Custom Field value
 $searchByyear = $_POST['year'];
-$searchBysection = mysqli_real_escape_string($conn, $_POST['section']);
-$searchBycategory = mysqli_real_escape_string($conn, $_POST['category']);
-$searchBybrand = mysqli_real_escape_string($conn, $_POST['brand']);
 
 ## Search 
 $searchQuery = " ";
 if($searchByyear != ''){
     $searchQuery .= " and (Year like '%".$searchByyear."%' ) ";
 }
-if($searchBysection != ''){
-    $searchQuery .= " and (Section like '".$searchBysection."%') ";
-}
-if($searchBycategory != ''){
-    $searchQuery .= " and (Category like '".$searchBycategory."%') ";
-}
-if($searchBybrand != ''){
-    $searchQuery .= " and (Brand like '".$searchBybrand."%') ";
-}
 
-if($searchValue != ''){
-    $searchQuery .= " and (Brand like '%".$searchValue."%') ";
-}
+// if($searchValue != ''){
+//     $searchQuery .= " and (Brand like '%".$searchValue."%') ";
+// }
 
 ## Total number of records without filtering
 $sel = mysqli_query($conn,"select count(*) as allcount from videos");
@@ -49,27 +37,16 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Fetch records
-$empQuery = "SELECT * FROM videos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
+$empQuery = "SELECT * FROM videos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
 $empRecords = mysqli_query($conn, $empQuery);
 
 $data = array();
 
 while ($row = mysqli_fetch_assoc($empRecords)) {
     $data[] = array(
-            "video_Id"=>$row['video_Id'],
-            "Signature"=>$row['Signature'],
-            "Section"=>$row['Section'],
-    		"Category"=>$row['Category'],
-            "Media"=>$row['Media'],
-            "Brand"=>$row['Brand'],
-    		"Copyline"=>$row['Copyline'],
-            "LaunchDate"=>$row['LaunchDate'],
-            "Duration"=>$row['Duration'],
-            "libsignature"=>$row['libsignature'],
-            "advertiser"=>$row['advertiser']
-            // "button"=>'<button type="submit">aaa</button>'
+            "Year"=>$row['Year'],
+            "FileExcel"=>$row['FileExcel']
         );
-
 }
 
 ## Response

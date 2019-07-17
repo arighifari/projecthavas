@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" type="image/jpg" href="image/adwatch.png">
+    <link rel="icon" type="image/jpg" href="../image/adwatch.png">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 
     <!-- Font Awesome JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -18,7 +18,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
     <?php
-        include_once('config.php');
+        session_start();
+        if(!isset($_SESSION['admin'])){
+            header('Location: ../index.php');
+        }
+
+        include_once('../config.php');
         $result=mysqli_query($conn,"SELECT * FROM videos");
     ?>
 </head>
@@ -28,12 +33,11 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-            <!-- <img src="image/havas.png" style="width: 40%; length:40% " alt="Logo Havas"> -->
-          	<img src="image/adwatch.png" style="width: 30%; length:30%; margin-left: 70px;"  alt="Logo Havas">
-                <h3 style="margin-left: 30px;margin-top:10px;">AdWatch</h3>
+                <img src="../image/adwatch.png" style="width: 30%; length:30%; margin-left: 70px;"  alt="Logo Havas">
+                <h3 style="margin-left: 30px">AdWatch</h3>
             </div>
             <ul class="list-unstyled components">
-		<a href="index.php">
+                <a href="../index.php">
                     <span style="font-size: 20px; color: #cfcfd1; margin-left: 10px">
                         <i class="fas fa-home"></i>
                         </span>
@@ -42,22 +46,47 @@
                     </a>
                 <br>
                 <br>
+                <?php if(isset($_SESSION['admin'])){ ?>
                 <li>
-                    <a href="home.php">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span style="font-size: 20px; color: #cfcfd1;">
+                                <i class="fas fa-user"></i>
+                            </span>
+                                Hello, <?=$_SESSION['admin'];?>
+                        </a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="logout.php">Logout</a>
+                            </li>
+                        </ul>
+                </li>
+                <?php } ?>
+                <li>
+                    <a href="index.php">
                     <span style="font-size: 20px; color: #cfcfd1;">
                         <i class="fas fa-search"></i>
                         </span>
                             Ads Filter
                         </i>
                     </a>
+
                 </li>
                 <li>
-                    <a href="user_guide.php">
-                    <span style="font-size: 20px; color: #cfcfd1;">
-                        <i class="fas fa-book-open"></i>
-                        </span>
-                            User Guide
-                        </i>
+                    <a href="input.php">
+                        <span style="font-size: 20px; color: #cfcfd1;">
+                            <i class="fas fa-upload"></i>
+                            </span>
+                                Upload Excel
+                            </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="register.php">
+                        <span style="font-size: 20px; color: #cfcfd1;">
+                            <i class="fas fa-sign-in-alt"></i>
+                            </span>
+                                Add An Admin
+                            </i>
                     </a>
                 </li>
         </nav>
@@ -76,13 +105,15 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <!-- <li class="nav-item">
+                        <!-- <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
                                 <i class="far fa-user"> <span><a href="#">Login</a></span></i>
                             </li>
                             <li>
-                            </li>   -->
+                            </li>  
                         </ul>
+                        <li> -->
+                    
                     </div>
                 </div>
             </nav>

@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 
     <!-- Font Awesome JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -19,10 +19,10 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
     <?php
-        include('section.php');
+        include('../section.php');
         include('navbar.php');
         $idvideo = $_GET['idvideo'];
-        include_once('config.php');
+        include_once('../config.php');
         $result=mysqli_query($conn,"SELECT * FROM videos where Signature = '$idvideo'");
         $videos = mysqli_fetch_assoc($result);
 
@@ -77,25 +77,20 @@
         <div class="col-md-5">
         <?php  
         if($media2['Media'] == 'TV') { ?>
-        <video width="400" controls>
-            <source src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mp4" type="video/mp4">
-            <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
-            Your browser does not support HTML5 video.
-        </video>
-
-        <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120>
+        <EMBED style="margin-top: 30px" allowfullscreen width="100%" height="40%"  autoplay="autoplay" src="../adpix/AdPix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" AUTOPLAY=true WIDTH=160 HEIGHT=120></EMBED>
         <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg"
-        href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" class="btn btn-primary btn-sm" role="button">Download</a>
+        href="../adpix/AdPix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/movie/<?php $sections = new section($idvideo) ?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.mpg" class="btn btn-primary btn-sm" role="button">Download</a>
         <?php } else { ?>
-            <img style="width: 100% ;height: auto ;margin-top: 30px" src="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            <img style="width: 100% ;height: auto ;margin-top: 30px" src="../adpix/AdPix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
             alt="<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg">
-            <a style="margin-top:5px" href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            <a style="margin-top:5px" href="../adpix/AdPix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
                 target="_blank" class="btn btn-primary btn-sm" role="button">VIEW</a>
             <a style="margin-top:5px" download="<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
-            href="adpix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
+            href="../adpix/AdPix2/<?= $years['Year']?>/<?= $weeks['FileExcel']?>/general/image/<?php $sections = new section($idvideo)?>/<?= $libs['libsignature']?>  -  <?=$brand_replace?>  -  <?=$copy_replace?>.jpg" 
             target="_blank" class="btn btn-primary btn-sm" role="button">DOWNLOAD</a>        
         <?php }
         ?>
+
         </div>
     <div class="col-md-7">
         <table id="myTable" style="margin-top: 30px" class="table table-{1:striped|lg|bordered|hover|inverse} table-inverse table-responsive" >

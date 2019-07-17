@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('../config.php');
 
 $year_filter = $_GET['year_filter'];
 $section_filter = mysqli_real_escape_string($conn, $_GET['section_filter']);

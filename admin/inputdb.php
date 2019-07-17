@@ -1,6 +1,6 @@
 <?php
-include_once('config.php');
-include_once('excel_reader/excel_reader2.php');    
+include_once('../config.php');
+include_once('../excel_reader/excel_reader2.php');    
 
 if(isset($_POST['submit'])){
 
@@ -11,13 +11,13 @@ if(isset($_POST['submit'])){
     
     $target = basename($_FILES['db']['name']) ;
     //upload to specific folder
-    move_uploaded_file($_FILES['db']['tmp_name'],"excel/" . $target);
+    move_uploaded_file($_FILES['db']['tmp_name'],"../excel/" . $target);
  
 // beri permisi agar file xls dapat di baca
-chmod("excel/".$_FILES['db']['name'],0777);
+chmod("../excel/".$_FILES['db']['name'],0777);
  
 // mengambil isi file xls
-$data = new Spreadsheet_Excel_Reader("excel/" . $_FILES['db']['name'],false);
+$data = new Spreadsheet_Excel_Reader("../excel/" . $_FILES['db']['name'],false);
 // menghitung jumlah baris data yang ada
 $jumlah_baris = $data->rowcount($sheet_index=0);
  
@@ -59,11 +59,11 @@ for ($i=2; $i<=$jumlah_baris; $i++){
     if(!$hasil){
         //          jika import gagal
             echo "<script type='text/javascript'>window.location='index.php';alert('Failed Insert Data Into Database');</script>";
-            unlink("excel/".$_FILES['db']['name']);
+            unlink("../excel/".$_FILES['db']['name']);
 
                 die(mysqli_error($conn));
             }else{
-            echo "<script type='text/javascript'>window.location='index.php?berhasil=$berhasil';alert('Success Insert $berhasil Data Into Database');</script>";
+            echo "<script type='text/javascript'>alert('Success Insert $berhasil Data Into Database');window.location='index.php?berhasil=$berhasil';</script>";
         //          jika impor berhasil
             }
  

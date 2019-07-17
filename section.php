@@ -2,7 +2,7 @@
 class section{
 function __construct($idvideo){
     include('config.php');
-    $query = "SELECT DISTINCT Section FROM videos where video_id = '$idvideo'";
+    $query = "SELECT DISTINCT Section FROM videos where Signature = '$idvideo'";
     $category = mysqli_query($conn, $query);
 
     while($section = mysqli_fetch_assoc($category)){
